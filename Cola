@@ -1,0 +1,50 @@
+import java.io.*;
+
+public class Cola {
+	Nodo head=null;///PRIMERA LINEA VACIA
+	public void encolar(Nodo nuevo) {
+		Nodo temp=head;
+		while(temp.siguiente!=null) {
+			temp=temp.siguiente;
+		}
+		temp.siguiente=nuevo;
+	}
+	public boolean IsEmpty(){
+		return head==null? true:false;//OPERADOR TERNARIO
+	}
+	public void Imprimir() throws IOException {
+		BufferedWriter b=new BufferedWriter(new OutputStreamWriter(System.out));
+		Nodo temp=head;
+		while(temp!=null) {
+			b.write(temp.pasarAString());
+			temp=temp.siguiente;
+		}
+		b.flush();		
+	}
+	public Nodo desencolar() {
+		Nodo temp=head;
+		head=head.siguiente;
+		temp=null;
+		return temp;
+	}
+	
+	public static void main(String[]args) throws IOException {
+		Cola estudiantes=new Cola();
+		//PRIMER NODO
+		estudiantes.encolar(new Nodo("Diego",18,11234));
+		//NODO SIGUIENTE
+		estudiantes.encolar(new Nodo("Andres",17,176452));
+		estudiantes.encolar(new Nodo("asda",15,2345));
+		estudiantes.encolar(new Nodo("asdjk",45,46542));
+		estudiantes.encolar(new Nodo("mhjdgrr",13,8973));
+		estudiantes.encolar(new Nodo("jkrebg",35,23452));
+		estudiantes.encolar(new Nodo("Andres",23,98767));
+		estudiantes.encolar(new Nodo("Damniel",31,133732));
+		estudiantes.Imprimir();
+		System.out.println("");
+		estudiantes.desencolar();
+		estudiantes.Imprimir();
+		System.out.println("");
+		estudiantes.encolar(estudiantes.desencolar());
+	}
+}
