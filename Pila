@@ -1,0 +1,48 @@
+import java.io.*;
+
+public class Pila {
+	Nodo head=null;///PRIMERA LINEA VACIA
+	public void push(Nodo nuevo) {
+		nuevo.siguiente=head;
+		head=nuevo;
+	}
+	public boolean IsEmpty(){
+		return head==null? true:false;//OPERADOR TERNARIO
+	}
+	public void Imprimir() throws IOException {
+		BufferedWriter b=new BufferedWriter(new OutputStreamWriter(System.out));
+		Nodo temp=head;
+		while(temp!=null) {
+			b.write(temp.pasarAString());
+			temp=temp.siguiente;
+		}
+		b.flush();
+		
+	}
+	public Nodo pop() {
+		Nodo temp=head;
+		head=head.siguiente;
+		temp=null;
+		return temp;
+	}
+	
+	public static void main(String[]args) throws IOException {
+		Pila estudiantes=new Pila();
+		//PRIMER NODO
+		estudiantes.push(new Nodo("Diego",18,11234));
+		//NODO SIGUIENTE
+		estudiantes.push(new Nodo("Andres",17,176452));
+		estudiantes.push(new Nodo("asda",15,2345));
+		estudiantes.push(new Nodo("asdjk",45,46542));
+		estudiantes.push(new Nodo("mhjdgrr",13,8973));
+		estudiantes.push(new Nodo("jkrebg",35,23452));
+		estudiantes.push(new Nodo("Andres",23,98767));
+		estudiantes.push(new Nodo("Damniel",31,133732));
+		estudiantes.Imprimir();
+		System.out.println("");
+		estudiantes.pop();
+		estudiantes.Imprimir();
+		System.out.println("");
+		
+	}
+}
