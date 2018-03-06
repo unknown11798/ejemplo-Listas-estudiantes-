@@ -1,0 +1,73 @@
+import java.io.*;
+public class Lista {
+	Nodo head=null;///PRIMERA LINEA VACIA
+	public void insertarAlInicio(Nodo nuevo) {
+		nuevo.siguiente=head;
+		head=nuevo;
+	}
+	public boolean IsEmpty(){
+		return head==null? true:false;//OPERADOR TERNARIO
+	}
+	public void Imprimir() throws IOException {
+		BufferedReader a=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter b=new BufferedWriter(new OutputStreamWriter(System.out));
+		Nodo temp=head;
+		while(temp!=null) {
+			b.write(temp.pasarAString());
+			temp=temp.siguiente;
+		}
+		b.flush();
+		
+	}
+	public void insertarAlFinal(Nodo nuevo) {
+		Nodo temp=head;
+		while(temp.siguiente!=null) {
+			temp=temp.siguiente;
+		}
+		temp.siguiente=nuevo;
+	}
+	public void borrarAlInicio() {
+		Nodo temp=head;
+		head=head.siguiente;
+		temp=null;
+		System.gc();
+	}
+	public void borrarAlFinal() {
+		Nodo pre=head;
+		Nodo temp;
+		while(pre.siguiente.siguiente!=null) {
+			pre=pre.siguiente;
+		}
+		temp=pre.siguiente;
+		pre.siguiente=null;
+		temp=null;
+		System.gc();
+	}
+	
+	public void borrarEspecifico(int indice) {
+		
+	}
+	public static void main(String[]args) throws IOException {
+		Lista estudiantes=new Lista();
+		//PRIMER NODO
+		estudiantes.insertarAlInicio(new Nodo("Diego",18,11234));
+		//NODO SIGUIENTE
+		estudiantes.insertarAlInicio(new Nodo("Andres",17,176452));
+		estudiantes.insertarAlInicio(new Nodo("asda",15,2345));
+		estudiantes.insertarAlInicio(new Nodo("asdjk",45,46542));
+		estudiantes.insertarAlInicio(new Nodo("mhjdgrr",13,8973));
+		estudiantes.insertarAlInicio(new Nodo("jkrebg",35,23452));
+		estudiantes.insertarAlInicio(new Nodo("Andres",23,98767));
+		//NODO AL FINAL
+		estudiantes.insertarAlFinal(new Nodo("Damniel",31,133732));
+		estudiantes.Imprimir();
+		System.out.println("");
+		estudiantes.borrarAlInicio();
+		estudiantes.Imprimir();
+		System.out.println("");
+		estudiantes.borrarAlFinal();
+		estudiantes.Imprimir();
+		System.out.println("");
+	}
+	
+}
