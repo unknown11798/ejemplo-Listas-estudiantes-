@@ -1,4 +1,4 @@
-import java.io.*;
+import java.io.IOException;
 public class Lista {
 	Nodo head=null;///PRIMERA LINEA VACIA
 	public void insertarAlInicio(Nodo nuevo) {
@@ -12,15 +12,11 @@ public class Lista {
                 return false;
 	}
 	public void Imprimir() throws IOException {
-		BufferedReader a=new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter b=new BufferedWriter(new OutputStreamWriter(System.out));
-		Nodo temp=head;
+            Nodo temp=head;
 		while(temp!=null) {
-			b.write(temp.pasarAString());
-			temp=temp.siguiente;
-		}
-		b.flush();
-		
+		System.out.print(temp.pasarAString());
+		temp=temp.siguiente;
+            }
 	}
 	public void insertarAlFinal(Nodo nuevo) {
             if(IsEmpty()){
@@ -85,14 +81,23 @@ public class Lista {
             }
             return cont;
         }
-        public Nodo BusquedaBinaria(int dato){
-            Nodo temp=;
-            int mayor=size();
-            int menor=0;           
-            while(menor<=mayor&&menor!=dato){
-                int medio=(mayor+menor)/2;
-                if();
-            }
+        public int BusquedaBinariaEdad(int dato){
+            int left=0,right=size()-1,mid;
+            while(left<=right){
+                mid=left+(right-left)/2;
+                if(getNode(mid).age==dato)
+                    return mid;
+                if(getNode(mid).age<dato)
+                    left=mid+1;
+                else
+                    right=mid-1;
+            }return -1;
+        }
+        public void actualizar(String name,int age,int id,int indice){
+            Nodo temp=getNode(BusquedaBinariaEdad(indice));
+            temp.name=name;
+            temp.age=age;
+            temp.id=id;
         }
         public Nodo getNode(int indice){
             if(size()<indice){
@@ -132,6 +137,5 @@ public class Lista {
                 estudiantes.QuickSort();
                 estudiantes.Imprimir();
                 System.out.println(estudiantes.size());
-                
 	}	
 }
